@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: cfdaa320dcea868bcbc555a801378bf5
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - floorTilePrefab: {fileID: 6556446825158645195, guid: 0e54b9d6075348ac2976f39851809b4c, type: 3}
+  - wallTilePrefab: {fileID: 5871958473995843661, guid: 9a350a8ae6ed745f18189735a70e4cd7, type: 3}
+  - brickTilePrefab: {fileID: 3325653440682173459, guid: f963f6f2d6758662ba2eb5959f021cc6, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
