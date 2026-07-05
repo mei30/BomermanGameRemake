@@ -149,6 +149,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   currentStage: 1
+  playerLives: 1
+  currentScore: 0
+  enableEventLogging: 1
 --- !u!4 &1399440437
 Transform:
   m_ObjectHideFlags: 0

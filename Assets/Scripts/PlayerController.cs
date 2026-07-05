@@ -40,12 +40,6 @@ public class PlayerController : MonoBehaviour
             Mathf.Round(transform.position.y));
 
         GameObject bomb = Instantiate(bombPrefab, spawnPos, Quaternion.identity);
-        
-        // Trigger bomb placed events
-        EventManager.Instance.TriggerBombPlaced(bomb, spawnPos);
-        
-        // Play bomb place sound effect
-        EventManager.Instance.PlaySFX("BombPlace");
     }
 
     void OnEnable()
@@ -62,8 +56,6 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         
-        // Trigger player spawn event
-        EventManager.Instance.TriggerPlayerSpawn(gameObject);
     }
 
     void Update()
@@ -77,6 +69,8 @@ public class PlayerController : MonoBehaviour
         animator.SetFloat("MoveX", movement.x);
         animator.SetFloat("MoveY", movement.y);
         // Normalize so diagonal movement isn’t faster
+
+        Debug.Log($"Movement: {movement}");
 
         Vector2 newPosition = rb.position + movement.normalized * moveSpeed * Time.fixedDeltaTime;
         if (Vector2.up == movement)
@@ -112,9 +106,6 @@ public class PlayerController : MonoBehaviour
 
         // Move player slightly "into" the scene so it renders above flames
         transform.position = new Vector3(transform.position.x, transform.position.y, -1f);
-        
-        // Trigger player death event
-        EventManager.Instance.TriggerPlayerDeath(gameObject);
     }
 
     public void OnDeathAnimationEnd() {

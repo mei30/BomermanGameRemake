@@ -24,9 +24,6 @@ public class Baloon : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
 
         PickNewDirection();
-        
-        // Trigger enemy spawn event
-        // EventManager.Instance.TriggerEnemySpawn(gameObject);
     }
 
     // Update is called once per frame
@@ -74,9 +71,6 @@ public class Baloon : MonoBehaviour
 
         // Move enemy slightly "into" the scene so it renders above flames
         transform.position = new Vector3(transform.position.x, transform.position.y, -1f);
-        
-        // Trigger enemy death event
-        EventManager.Instance.TriggerEnemyDeath(gameObject);
     }
 
     public void OnDeathAnimationEnd() {
