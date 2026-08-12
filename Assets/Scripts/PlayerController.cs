@@ -7,6 +7,17 @@ public class PlayerController : MonoBehaviour
 {
     public float moveSpeed = 2f; // Adjust in Inspector
 
+    [Header("Events")]
+    [SerializeField] private GameEvent onPlayerDied;
+
+    [Header("Audio")]
+    [SerializeField] private AudioSource footstepAudioSource;
+    [SerializeField] private AudioSource sfxAudioSource;
+    [SerializeField] private AudioSource spawnBombAudioSource;
+    [SerializeField] private AudioClip footstepClip;
+    [SerializeField] private AudioClip bombPlaceClip;
+    [SerializeField] private AudioClip deathClip;
+
     private Rigidbody2D rb;
     private Vector2 movement;
 
@@ -21,6 +32,27 @@ public class PlayerController : MonoBehaviour
     void Awake() {
         animator = GetComponent<Animator>();
         control = new PlayerControl();
+
+        if (footstepAudioSource == null)
+        {
+            footstepAudioSource = GetComponent<AudioSource>();
+        }
+
+        if (footstepAudioSource == null)
+        {
+            footstepAudioSource = gameObject.AddComponent<AudioSource>();
+        }
+
+        if (sfxAudioSource == null)
+        {
+            sfxAudioSource = gameObject.AddComponent<AudioSource>();
+        }
+
+        footstepAudioSource.loop = true;
+        footstepAudioSource.playOnAwake = false;
+        footstepAudioSource.clip = footstepClip;
+
+        sfxAudioSource.playOnAwake = false;
 
         // Subscribe to input event
         control.Player.Move.performed += ctx => movement = ctx.ReadValue<Vector2>();
@@ -39,7 +71,9 @@ public class PlayerController : MonoBehaviour
             Mathf.Round(transform.position.x),
             Mathf.Round(transform.position.y));
 
-        GameObject bomb = Instantiate(bombPrefab, spawnPos, Quaternion.identity);
+        Instantiate(bombPrefab, spawnPos, Quaternion.identity);
+
+        PlayBombPlaceSound(spawnPos);
     }
 
     void OnEnable()
@@ -49,6 +83,7 @@ public class PlayerController : MonoBehaviour
 
     void OnDisable()
     {
+        StopFootsteps();
         control.Player.Disable();
     }
 
@@ -65,12 +100,16 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (isDead)
+        {
+            StopFootsteps();
+            return;
+        }
+
         animator.SetBool("IsMoving", movement != Vector2.zero);
         animator.SetFloat("MoveX", movement.x);
         animator.SetFloat("MoveY", movement.y);
         // Normalize so diagonal movement isn’t faster
-
-        Debug.Log($"Movement: {movement}");
 
         Vector2 newPosition = rb.position + movement.normalized * moveSpeed * Time.fixedDeltaTime;
         if (Vector2.up == movement)
@@ -82,7 +121,16 @@ public class PlayerController : MonoBehaviour
         else if (Vector2.right == movement)
             newPosition.y = Mathf.Round(newPosition.y);
 
-       rb.MovePosition(newPosition);
+        rb.MovePosition(newPosition);
+
+        if (movement != Vector2.zero)
+        {
+            PlayFootsteps();
+        }
+        else
+        {
+            StopFootsteps();
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -99,6 +147,8 @@ public class PlayerController : MonoBehaviour
         if (isDead) return; // prevent multiple triggers
 
         isDead = true;
+        StopFootsteps();
+        PlayDeathSound();
         animator.SetTrigger("Die"); // play death animation
         GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero; // stop movement
 
@@ -109,6 +159,7 @@ public class PlayerController : MonoBehaviour
     }
 
     public void OnDeathAnimationEnd() {
+        onPlayerDied?.Raise();
         Destroy(gameObject); // adjust to animation time
     }
 
@@ -122,5 +173,51 @@ public class PlayerController : MonoBehaviour
         {
             OnHitByExplosion();
         }
+    }
+
+    private void PlayFootsteps()
+    {
+        if (footstepAudioSource == null || footstepClip == null)
+        {
+            return;
+        }
+
+        if (footstepAudioSource.clip != footstepClip)
+        {
+            footstepAudioSource.clip = footstepClip;
+        }
+
+        if (!footstepAudioSource.isPlaying)
+        {
+            footstepAudioSource.Play();
+        }
+    }
+
+    private void StopFootsteps()
+    {
+        if (footstepAudioSource != null && footstepAudioSource.isPlaying)
+        {
+            footstepAudioSource.Stop();
+        }
+    }
+
+    private void PlayDeathSound()
+    {
+        if (sfxAudioSource == null || deathClip == null)
+        {
+            return;
+        }
+
+        sfxAudioSource.PlayOneShot(deathClip);
+    }
+
+    private void PlayBombPlaceSound(Vector2 position)
+    {
+        if (bombPlaceClip == null)
+        {
+            return;
+        }
+
+        spawnBombAudioSource.PlayOneShot(bombPlaceClip);
     }
 }

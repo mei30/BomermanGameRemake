@@ -5,6 +5,7 @@ public class Baloon : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private bool isDead = false;
+    [SerializeField] private GameEvent onEnemyKilled;
 
     public float moveSpeed = 2f;         // Movement speed
     public float changeDirTime = 2f;
@@ -66,6 +67,7 @@ public class Baloon : MonoBehaviour
         if (isDead) return; // prevent multiple triggers
 
         isDead = true;
+        onEnemyKilled?.Raise();
         animator.SetTrigger("Die"); // play death animation
         GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero; // stop movement
 

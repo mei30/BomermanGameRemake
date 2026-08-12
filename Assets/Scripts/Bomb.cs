@@ -4,6 +4,10 @@ public class Bomb : MonoBehaviour
 {
     public float fuseTime = 4f; // seconds before explosion
 
+    [Header("Audio")]
+    [SerializeField] private AudioClip explosionClip;
+    [SerializeField] private AudioSource explosionAudioSource;
+
     private Animator animator;
 
     public GameObject explosionCenter;
@@ -36,6 +40,8 @@ public class Bomb : MonoBehaviour
         ExplodeInDirection(Vector2.left, explosionHorizontal, explosionEndLeft);
         ExplodeInDirection(Vector2.right, explosionHorizontal, explosionEndRight);
 
+        PlayExplosionSound();
+
         Destroy(gameObject);
 
     }
@@ -64,5 +70,17 @@ public class Bomb : MonoBehaviour
             else if (hit.CompareTag("Wall"))
                 break;
         }
+    }
+
+    private void PlayExplosionSound()
+    {
+        if (explosionClip == null)
+        {
+            return;
+        }
+
+        Debug.Log("Playing explosion sound");
+
+        explosionAudioSource.PlayOneShot(explosionClip);
     }
 }

@@ -142,6 +142,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6de86176538fcd6469d2b123135f9e5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  onEnemyKilled: {fileID: 11400000, guid: fc1a1e3caf637207b812caf42140753a, type: 2}
   moveSpeed: 2
   changeDirTime: 3
 --- !u!95 &5777844003948816173

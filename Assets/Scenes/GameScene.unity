@@ -128,39 +128,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 367708385}
-  - component: {fileID: 367708384}
+  - component: {fileID: 367708386}
   m_Layer: 0
-  m_Name: GameManager
+  m_Name: TileManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &367708384
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 367708383}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cfdaa320dcea868bcbc555a801378bf5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  width: 31
-  height: 13
-  tileSize: 1
-  playerPrefab: {fileID: 7414207995122824619, guid: 15a7dca90a68525808b0eaeb47da4ba0, type: 3}
-  baloonPrefab: {fileID: 5364635038353572481, guid: 2ee0c9ebdf2ed3f3ca85275dc1c461bd, type: 3}
-  floorTilePrefab: {fileID: 6556446825158645195, guid: 0e54b9d6075348ac2976f39851809b4c, type: 3}
-  wallTilePrefab: {fileID: 1596149358296070580, guid: 4106acabe1a189ba0a584996ffceffd4, type: 3}
-  brickTilePrefab: {fileID: 3325653440682173459, guid: f963f6f2d6758662ba2eb5959f021cc6, type: 3}
-  spawnPosition: {x: 1, y: 1}
-  baloonSpawnPosition: {x: 34, y: 1}
-  baloonSpawnPosition2: {x: 28, y: 1}
-  baloonSpawnPosition3: {x: 28, y: 18}
-  brickSpawnChance: 0.6
 --- !u!4 &367708385
 Transform:
   m_ObjectHideFlags: 0
@@ -176,6 +151,25 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &367708386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 367708383}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c1788a9cfedbeabbb50f45783ed87b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Levels.TileMapManager
+  onLevelLoaded: {fileID: 11400000, guid: cc2dca4a7a27436c9a28ce16ccb355cf, type: 2}
+  floorPrefab: {fileID: 6556446825158645195, guid: 0e54b9d6075348ac2976f39851809b4c, type: 3}
+  solidWallPrefab: {fileID: 1596149358296070580, guid: 4106acabe1a189ba0a584996ffceffd4, type: 3}
+  brickPrefab: {fileID: 3325653440682173459, guid: f963f6f2d6758662ba2eb5959f021cc6, type: 3}
+  playerPrefab: {fileID: 7414207995122824619, guid: 15a7dca90a68525808b0eaeb47da4ba0, type: 3}
+  enemyPrefab: {fileID: 5364635038353572481, guid: 2ee0c9ebdf2ed3f3ca85275dc1c461bd, type: 3}
+  tileSize: 1
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -186,7 +180,6 @@ GameObject:
   m_Component:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
-  - component: {fileID: 519420029}
   - component: {fileID: 519420030}
   - component: {fileID: 519420033}
   - component: {fileID: 519420034}
@@ -197,14 +190,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &519420029
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 519420028}
-  m_Enabled: 1
 --- !u!114 &519420030
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -569,6 +554,54 @@ MonoBehaviour:
   mapSize: {x: 31, y: 13}
   tileSize: 1
   target: {fileID: 0}
+--- !u!1 &913980700
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 913980702}
+  - component: {fileID: 913980701}
+  m_Layer: 0
+  m_Name: LevelObjective
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &913980701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 913980700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61702beee6898ffa5ada87cbef472178, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Levels.KillCountObjective
+  onEnemyKilled: {fileID: 11400000, guid: fc1a1e3caf637207b812caf42140753a, type: 2}
+  onPlayerDied: {fileID: 11400000, guid: 4330a38721cf59a4996847312cfefea0, type: 2}
+  totalEnemies: 1
+  scorePerEnemy: 100
+--- !u!4 &913980702
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 913980700}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.37974, y: 0.54859, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -577,3 +610,4 @@ SceneRoots:
   - {fileID: 619394802}
   - {fileID: 367708385}
   - {fileID: 719380852}
+  - {fileID: 913980702}
