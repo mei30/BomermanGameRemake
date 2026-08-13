@@ -91,6 +91,7 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
+        Debug.Log("GameManager: Starting game...");
         _stateMachine.TransitionTo(_playingState);
     }
 

@@ -7,6 +7,7 @@ public class Bomb : MonoBehaviour
     [Header("Audio")]
     [SerializeField] private AudioClip explosionClip;
     [SerializeField] private AudioSource explosionAudioSource;
+    [SerializeField] private float explosionVolume = 1f;
 
     private Animator animator;
 
@@ -79,8 +80,26 @@ public class Bomb : MonoBehaviour
             return;
         }
 
-        Debug.Log("Playing explosion sound");
+        // Play on a detached object so sound is not cut when this bomb is destroyed.
+        GameObject audioObject = new GameObject("ExplosionAudio");
+        audioObject.transform.position = transform.position;
 
-        explosionAudioSource.PlayOneShot(explosionClip);
+        AudioSource tempSource = audioObject.AddComponent<AudioSource>();
+        tempSource.playOnAwake = false;
+        tempSource.clip = explosionClip;
+        tempSource.volume = explosionVolume;
+
+        if (explosionAudioSource != null)
+        {
+            tempSource.outputAudioMixerGroup = explosionAudioSource.outputAudioMixerGroup;
+            tempSource.spatialBlend = explosionAudioSource.spatialBlend;
+        }
+        else
+        {
+            tempSource.spatialBlend = 0f;
+        }
+
+        tempSource.Play();
+        Destroy(audioObject, explosionClip.length + 0.1f);
     }
 }

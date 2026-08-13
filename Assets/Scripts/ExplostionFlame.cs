@@ -35,5 +35,4 @@ public class ExplosionFlame : MonoBehaviour
             collision.GetComponent<Baloon>()?.OnHitByExplosion();
         }
     }
-
 }
