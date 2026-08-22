@@ -11,9 +11,6 @@ namespace Levels
     /// </summary>
     public class TileMapManager : MonoBehaviour
     {
-        [Header("Event Channels")]
-        [SerializeField] private GameEvent onLevelLoaded;
-
         [Header("Tile Prefabs")]
         [SerializeField] private GameObject floorPrefab;
         [SerializeField] private GameObject solidWallPrefab;
@@ -26,20 +23,9 @@ namespace Levels
         [Header("Grid Settings")]
         [SerializeField] private float tileSize = 1f;
 
-        private void OnEnable() => onLevelLoaded?.RegisterListener(HandleLevelLoaded);
-        private void OnDisable() => onLevelLoaded?.UnregisterListener(HandleLevelLoaded);
-
         void Awake()
         {
-            Debug.Log("TileMapManager: Awake called, registering for level loaded event");
-        }
 
-        void Start()
-        {
-            Debug.Log("TileMapManager: Start called, waiting for level to load");
-        }
-        private void HandleLevelLoaded()
-        {
             LevelLayoutData layout = LevelManager.Instance.CurrentLevel?.layout;
             if (layout == null)
             {
@@ -50,6 +36,15 @@ namespace Levels
             BuildTiles(layout);
             SpawnPlayer(layout);
             SpawnEnemies(layout);
+            Debug.Log("TileMapManager: Awake called, registering for level loaded event");
+        }
+
+        void Start()
+        {
+            Debug.Log("TileMapManager: Start called, waiting for level to load");
+        }
+        private void HandleLevelLoaded()
+        {
         }
 
         private void BuildTiles(LevelLayoutData layout)

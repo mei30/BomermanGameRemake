@@ -163,7 +163,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c1788a9cfedbeabbb50f45783ed87b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Levels.TileMapManager
-  onLevelLoaded: {fileID: 11400000, guid: cc2dca4a7a27436c9a28ce16ccb355cf, type: 2}
   floorPrefab: {fileID: 6556446825158645195, guid: 0e54b9d6075348ac2976f39851809b4c, type: 3}
   solidWallPrefab: {fileID: 1596149358296070580, guid: 4106acabe1a189ba0a584996ffceffd4, type: 3}
   brickPrefab: {fileID: 3325653440682173459, guid: f963f6f2d6758662ba2eb5959f021cc6, type: 3}

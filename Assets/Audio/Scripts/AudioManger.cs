@@ -12,10 +12,13 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private GameEvent _onLevelCompleted;
     [SerializeField] private GameEvent _onPlayerDied;
 
+    [SerializeField] private GameEvent _onLevelFailed;
+
     public AudioSource AudioSource => _audioSource;
     public GameEvent OnLevelLoaded => _onLevelLoaded;
     public GameEvent OnLevelCompleted => _onLevelCompleted;
     public GameEvent OnPlayerDied => _onPlayerDied;
+    public GameEvent OnLevelFailed => _onLevelFailed;
 
     private void Awake()
     {
@@ -45,6 +48,7 @@ public class AudioManager : MonoBehaviour
         _onLevelLoaded?.RegisterListener(HandleOnLevelLoaded);
         _onLevelCompleted?.RegisterListener(StopLevelMusic);
         _onPlayerDied?.RegisterListener(PlayDeathClip);
+        _onLevelFailed?.RegisterListener(StopLevelMusic);
     }
 
     private void OnDisable()
@@ -52,6 +56,7 @@ public class AudioManager : MonoBehaviour
         _onLevelLoaded?.UnregisterListener(HandleOnLevelLoaded);
         _onLevelCompleted?.UnregisterListener(StopLevelMusic);
         _onPlayerDied?.UnregisterListener(PlayDeathClip);
+        _onLevelFailed?.UnregisterListener(StopLevelMusic);
     }
 
     private void HandleSceneLoaded(Scene scene, LoadSceneMode mode)

@@ -362,9 +362,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7043300264650642607, guid: 3300fe353667f8691b7ae9b3677e757f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2033464478}
-    - targetCorrespondingSourceObject: {fileID: 7043300264650642607, guid: 3300fe353667f8691b7ae9b3677e757f, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2033464481}
   m_SourcePrefab: {fileID: 100100000, guid: 3300fe353667f8691b7ae9b3677e757f, type: 3}
 --- !u!1 &776435981
 GameObject:
@@ -444,8 +441,9 @@ MonoBehaviour:
   _levelMusic: {fileID: 8300000, guid: 1bd2a508d8ae05b81bd1c473124fe5b8, type: 3}
   _playerDeathClip: {fileID: 8300000, guid: 4745979922758c45bb9fe0651a77962a, type: 3}
   _onLevelLoaded: {fileID: 11400000, guid: cc2dca4a7a27436c9a28ce16ccb355cf, type: 2}
-  _onLevelCompleted: {fileID: 0}
+  _onLevelCompleted: {fileID: 11400000, guid: 2901657a422f162998b88048d237b71f, type: 2}
   _onPlayerDied: {fileID: 11400000, guid: 4330a38721cf59a4996847312cfefea0, type: 2}
+  _onLevelFailed: {fileID: 11400000, guid: 7bd707eeb7b63bbf6b2f9c8701165925, type: 2}
 --- !u!114 &776435986
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -774,42 +772,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineFollow
   TrackerSettings:
     BindingMode: 4
-    PositionDamping: {x: 3, y: 3, z: 1}
+    PositionDamping: {x: 0, y: 0, z: 1}
     AngularDampingMode: 0
     RotationDamping: {x: 1, y: 1, z: 1}
     QuaternionDamping: 1
   FollowOffset: {x: 0, y: 0, z: -10}
---- !u!114 &2033464481
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2033464473}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 886251e9a18ece04ea8e61686c173e1b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachinePositionComposer
-  CameraDistance: 10
-  DeadZoneDepth: 0
-  Composition:
-    ScreenPosition: {x: 0, y: 0}
-    DeadZone:
-      Enabled: 0
-      Size: {x: 0.2, y: 0.2}
-    HardLimits:
-      Enabled: 0
-      Size: {x: 0.8, y: 0.8}
-      Offset: {x: 0, y: 0}
-  CenterOnActivate: 1
-  TargetOffset: {x: 0, y: 0, z: 0}
-  Damping: {x: 1, y: 1, z: 1}
-  Lookahead:
-    Enabled: 0
-    Time: 0
-    Smoothing: 0
-    IgnoreY: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
