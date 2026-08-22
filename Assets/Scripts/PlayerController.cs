@@ -33,6 +33,8 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         control = new PlayerControl();
 
+        Debug.Log("PlayerController: Awake called, initializing audio sources");
+
         if (footstepAudioSource == null)
         {
             footstepAudioSource = GetComponent<AudioSource>();
@@ -78,6 +80,7 @@ public class PlayerController : MonoBehaviour
 
     void OnEnable()
     {
+        Debug.Log("PlayerController: Enabling player controls");
         control.Player.Enable();
     }
 
@@ -90,7 +93,8 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        
+
+        Debug.Log("PlayerController: Setting camera target to player");
     }
 
     void Update()

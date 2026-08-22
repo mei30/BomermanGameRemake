@@ -1,3 +1,4 @@
+using Unity.Cinemachine;
 using UnityEngine;
 using Levels;
 
@@ -28,6 +29,15 @@ namespace Levels
         private void OnEnable() => onLevelLoaded?.RegisterListener(HandleLevelLoaded);
         private void OnDisable() => onLevelLoaded?.UnregisterListener(HandleLevelLoaded);
 
+        void Awake()
+        {
+            Debug.Log("TileMapManager: Awake called, registering for level loaded event");
+        }
+
+        void Start()
+        {
+            Debug.Log("TileMapManager: Start called, waiting for level to load");
+        }
         private void HandleLevelLoaded()
         {
             LevelLayoutData layout = LevelManager.Instance.CurrentLevel?.layout;
@@ -73,8 +83,12 @@ namespace Levels
         private void SpawnPlayer(LevelLayoutData layout)
         {
             if (playerPrefab == null) return;
+
             Vector3 worldPos = GridToWorld(layout.playerSpawn.x, layout.playerSpawn.y);
-            Instantiate(playerPrefab, worldPos, Quaternion.identity);
+            GameObject player = Instantiate(playerPrefab, worldPos, Quaternion.identity);
+
+            CameraManager.Instance.SetTarget(player.transform);
+            Debug.Log("TileMapManager: Spawned player at " + worldPos);
         }
 
         private void SpawnEnemies(LevelLayoutData layout)
