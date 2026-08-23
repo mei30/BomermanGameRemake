@@ -192,8 +192,8 @@ Camera:
   m_GameObject: {fileID: 132999380}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -218,7 +218,7 @@ Camera:
   far clip plane: 1000
   field of view: 5
   orthographic: 1
-  orthographic size: 2
+  orthographic size: 5
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -243,7 +243,7 @@ Transform:
   m_GameObject: {fileID: 132999380}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.1759896, y: 1.5, z: 0}
+  m_LocalPosition: {x: 5.189978, y: 4.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -352,7 +352,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6977462653323006473, guid: 3300fe353667f8691b7ae9b3677e757f, type: 3}
       propertyPath: Lens.OrthographicSize
-      value: 2
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7043300264650642607, guid: 3300fe353667f8691b7ae9b3677e757f, type: 3}
       propertyPath: m_Name

@@ -14,7 +14,7 @@ namespace Levels
     {
         [Header("Grid Size")]
         public int width = 13;
-        public int height = 11;
+        public int height = 31;
 
         [Header("Tile Grid")]
         // Flattened 1D array, index = x + y * width. Fill it either via the custom grid

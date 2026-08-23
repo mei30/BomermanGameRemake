@@ -49,6 +49,7 @@ namespace Levels
 
         private void BuildTiles(LevelLayoutData layout)
         {
+
             for (int y = 0; y < layout.height; y++)
             {
                 for (int x = 0; x < layout.width; x++)
@@ -59,7 +60,16 @@ namespace Levels
 
                     Debug.Log("Tile Manger: " + x + ", " + y);
                     Vector3 worldPos = GridToWorld(x, y);
-                    Instantiate(prefab, worldPos, Quaternion.identity, transform);
+                    if (tile == TileType.Floor)
+                    {
+                        Instantiate(prefab, worldPos, Quaternion.identity, transform);
+                    }
+
+                    else
+                    {
+                        Instantiate(floorPrefab, worldPos, Quaternion.identity, transform);
+                        Instantiate(prefab, worldPos, Quaternion.identity, transform);
+                    }
                 }
             }
         }
