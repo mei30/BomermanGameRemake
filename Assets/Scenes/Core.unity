@@ -460,7 +460,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b81e53fb435f954a8bde416868d0228, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelManager
-  _currentLevel: {fileID: 11400000, guid: 6eae566bc2dcd91eea4c6d06e1e23b3a, type: 2}
+  _currentLevel: {fileID: 11400000, guid: d0dfdfdf7aee9a8d98248ecca73d8cd2, type: 2}
+  levelSet: {fileID: 11400000, guid: 3f86632542b1bfbb2b8d6e9dfce444a7, type: 2}
   _onLevelLoaded: {fileID: 11400000, guid: cc2dca4a7a27436c9a28ce16ccb355cf, type: 2}
   _onLevelComplete: {fileID: 11400000, guid: 2901657a422f162998b88048d237b71f, type: 2}
   _onLevelFailed: {fileID: 11400000, guid: 7bd707eeb7b63bbf6b2f9c8701165925, type: 2}

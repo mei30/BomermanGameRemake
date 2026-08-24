@@ -15,15 +15,14 @@ namespace UI
             LevelData current = LevelManager.Instance.CurrentLevel;
             LevelData next = current;
 
-            Debug.Log($"LevelCompleteController: Continuing to next level: {next.sceneName}");
             if (next == null)
             {
                 // No next level defined - nothing to continue to, fall back to quitting.
+                Debug.LogWarning("LevelCompleteController: No next level defined, quitting to main menu.");
                 OnQuitClicked();
                 return;
             }
 
-            Debug.Log($"LevelCompleteController: Continuing to next level: {next.sceneName}");
             // Order matters: change state first so LevelComplete scene unloads (via
             // LevelCompleteState.Exit()), THEN load the next level.
             GameManager.Instance.StartGame();

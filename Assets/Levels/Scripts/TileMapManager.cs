@@ -29,19 +29,16 @@ namespace Levels
             LevelLayoutData layout = LevelManager.Instance.CurrentLevel?.layout;
             if (layout == null)
             {
-                Debug.LogWarning("TileMapManager: current level has no layout assigned.");
                 return;
             }
 
             BuildTiles(layout);
             SpawnPlayer(layout);
             SpawnEnemies(layout);
-            Debug.Log("TileMapManager: Awake called, registering for level loaded event");
         }
 
         void Start()
         {
-            Debug.Log("TileMapManager: Start called, waiting for level to load");
         }
         private void HandleLevelLoaded()
         {
@@ -58,7 +55,6 @@ namespace Levels
                     GameObject prefab = PrefabForTile(tile);
                     if (prefab == null) continue;
 
-                    Debug.Log("Tile Manger: " + x + ", " + y);
                     Vector3 worldPos = GridToWorld(x, y);
                     if (tile == TileType.Floor)
                     {
@@ -93,7 +89,6 @@ namespace Levels
             GameObject player = Instantiate(playerPrefab, worldPos, Quaternion.identity);
 
             CameraManager.Instance.SetTarget(player.transform);
-            Debug.Log("TileMapManager: Spawned player at " + worldPos);
         }
 
         private void SpawnEnemies(LevelLayoutData layout)

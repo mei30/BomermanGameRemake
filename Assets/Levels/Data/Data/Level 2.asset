@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cfe589c22b2b2e3a78d4d9ec94acfdd1, type: 3}
-  m_Name: Level 1
+  m_Name: Level 2
   m_EditorClassIdentifier: Assembly-CSharp::Levels.LevelData
-  levelId: 
+  levelId: 2
   displayName: 
   description: 
   sceneName: GameScene
@@ -23,4 +23,4 @@ MonoBehaviour:
   difficulty: 0
   thumbnail: {fileID: 0}
   musicClip: {fileID: 0}
-  layout: {fileID: 11400000, guid: e5a5213dfde76d3258c1687727857dea, type: 2}
+  layout: {fileID: 11400000, guid: adbb708915ba5b15599ac563e6eb10b9, type: 2}

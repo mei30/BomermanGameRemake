@@ -11,6 +11,9 @@ public class LevelManager : MonoBehaviour
 
     public LevelData CurrentLevel => _currentLevel;
 
+    [Header("Campaign")]
+    [SerializeField] private LevelSet levelSet;
+
     [Header("Events")]
     [SerializeField] private GameEvent _onLevelLoaded;
     [SerializeField] private GameEvent _onLevelComplete;
@@ -71,6 +74,9 @@ public class LevelManager : MonoBehaviour
     public void LevelComplete()
     {
         Debug.Log("LevelManager: Level completed successfully!");
+
+        _currentLevel = GetNextLevel();
+
         _onLevelComplete?.Raise();
     }
 
@@ -105,5 +111,10 @@ public class LevelManager : MonoBehaviour
         _isLoadingGameScene = false;
         Debug.Log($"LevelManager: '{sceneToLoad}' loaded");
         _onLevelLoaded?.Raise();
+    }
+
+    public LevelData GetNextLevel()
+    {
+        return _currentLevel != null ? levelSet.GetNext(_currentLevel) : null;
     }
 }
